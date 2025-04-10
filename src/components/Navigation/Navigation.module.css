@@ -1,0 +1,13 @@
+.link {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.activeLink {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+  margin-right: 15px;
+}
