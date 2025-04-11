@@ -6,14 +6,13 @@ import {
   selectIsRefreshing,
   selectAuthError,
 } from "../../redux/auth/authSelectors";
-import Layout from "../../components/Layout";
-import PrivateRoute from "../../components/PrivateRoute";
-import RestrictedRoute from "../../components/RestrictedRoute";
+import Layout from "../Layout";
+import PrivateRoute from "../PrivateRoute";
+import RestrictedRoute from "../RestrictedRoute";
 import HomePage from "../../pages/HomePage";
 import RegistrationPage from "../../pages/RegistrationPage";
 import LoginPage from "../../pages/LoginPage";
 import ContactsPage from "../../pages/ContactsPage";
-import clearContacts from "../../redux/contacts/contactsSlice";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -25,8 +24,9 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (authError && authError.type === "SOME_ERROR_TYPE") {
-      console.error("Authentication error:", authError.message);
+    if (authError) {
+      console.error("Authentication error:", authError);
+      alert("Authentication error. Please try again.");
     }
   }, [authError]);
 

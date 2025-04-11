@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 export default function RegistrationForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [registrationError, setRegistrationError] = useState(null);
 
   const initialValues = {
     name: "",
@@ -34,37 +35,47 @@ export default function RegistrationForm() {
       })
       .catch((error) => {
         console.error("Registration failed:", error);
+        if (error?.code === 11000) {
+          setRegistrationError("Ця електронна пошта вже зареєстрована.");
+        } else {
+          setRegistrationError(error.message);
+        }
+      })
+      .finally(() => {
+        resetForm();
       });
-    resetForm();
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <div>
-          <label htmlFor="name">Name</label>
-          <Field type="text" id="name" name="name" />
-          <ErrorMessage name="name" component="div" />
-        </div>
+    <div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        <Form>
+          <div>
+            <label htmlFor="name">Name</label>
+            <Field type="text" id="name" name="name" />
+            <ErrorMessage name="name" component="div" />
+          </div>
 
-        <div>
-          <label htmlFor="email">Email</label>
-          <Field type="email" id="email" name="email" />
-          <ErrorMessage name="email" component="div" />
-        </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <Field type="email" id="email" name="email" />
+            <ErrorMessage name="email" component="div" />
+          </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <Field type="password" id="password" name="password" />
-          <ErrorMessage name="password" component="div" />
-        </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <Field type="password" id="password" name="password" />
+            <ErrorMessage name="password" component="div" />
+          </div>
 
-        <button type="submit">Register</button>
-      </Form>
-    </Formik>
+          <button type="submit">Register</button>
+        </Form>
+      </Formik>
+      {registrationError && <p style={{ color: "red" }}>{registrationError}</p>}
+    </div>
   );
 }
