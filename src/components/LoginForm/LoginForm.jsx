@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/authOperations";
 import { useNavigate } from "react-router";
+import styles from "./LoginForm.module.css";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -37,20 +38,34 @@ export default function LoginForm() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <div>
-          <label htmlFor="email">Email</label>
-          <Field type="email" id="email" name="email" />
-          <ErrorMessage name="email" component="div" />
-        </div>
-
-        <div>
-          <label htmlFor="password">Password</label>
-          <Field type="password" id="password" name="password" />
-          <ErrorMessage name="password" component="div" />
-        </div>
-
-        <button type="submit">Log In</button>
+      <Form className={styles.form}>
+        <label className={styles.label} htmlFor="email">
+          Email
+          <Field
+            type="email"
+            id="email"
+            name="email"
+            className={styles.input}
+          />
+          <ErrorMessage name="email" component="div" className={styles.error} />
+        </label>
+        <label className={styles.label} htmlFor="password">
+          Password
+          <Field
+            type="password"
+            id="password"
+            name="password"
+            className={styles.input}
+          />
+          <ErrorMessage
+            name="password"
+            component="div"
+            className={styles.error}
+          />
+        </label>
+        <button type="submit" className={styles.button}>
+          Log In
+        </button>
       </Form>
     </Formik>
   );

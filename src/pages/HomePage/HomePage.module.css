@@ -1,0 +1,18 @@
+.container {
+  padding: 40px 300px;
+  text-align: center;
+}
+.title {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #4d1c85;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+.text {
+  font-size: 1.2rem;
+  color: #152c93;
+}

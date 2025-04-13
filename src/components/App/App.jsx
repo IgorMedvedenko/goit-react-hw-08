@@ -9,10 +9,10 @@ import {
 import Layout from "../Layout";
 import PrivateRoute from "../PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute";
-import HomePage from "../../pages/HomePage";
-import RegistrationPage from "../../pages/RegistrationPage";
-import LoginPage from "../../pages/LoginPage";
-import ContactsPage from "../../pages/ContactsPage";
+import HomePage from "../../pages/HomePage/HomePage";
+import RegistrationPage from "../../pages/RegistrationPage/RegistrationPage";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import ContactsPage from "../../pages/ContactsPage/ContactsPage";
 
 export default function App() {
   const dispatch = useDispatch();
