@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { store, persistor } from "./redux/filters/store.js";
+import { store, persistor } from "./redux/store.js";
 import { BrowserRouter } from "react-router";
 import { PersistGate } from "redux-persist/integration/react";
 import "modern-normalize";

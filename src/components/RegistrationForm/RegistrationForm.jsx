@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/authOperations";
+import { register } from "../../redux/auth/operations";
 import { useNavigate } from "react-router";
 import styles from "./RegistrationForm.module.css";
 
