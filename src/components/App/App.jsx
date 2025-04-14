@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router";
 import { refreshUser } from "../../redux/auth/operations";
+import { fetchContacts } from "../../redux/contacts/operations";
 import {
   selectIsRefreshing,
-  selectAuthError,
+  selectIsLoggedIn,
 } from "../../redux/auth/selectors";
 import Layout from "../Layout";
 import PrivateRoute from "../PrivateRoute";
@@ -17,18 +18,17 @@ import ContactsPage from "../../pages/ContactsPage/ContactsPage";
 export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const authError = useSelector(selectAuthError);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
   useEffect(() => {
-    if (authError) {
-      console.error("Authentication error:", authError);
-      alert("Authentication error. Please try again.");
+    if (isLoggedIn && !isRefreshing) {
+      dispatch(fetchContacts());
     }
-  }, [authError]);
+  }, [dispatch, isLoggedIn, isRefreshing]);
 
   return isRefreshing ? (
     <div>Refreshing User...</div>
